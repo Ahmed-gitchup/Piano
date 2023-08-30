@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Piano Game</title>
+    <style>
+        .piano-key {
+            display: inline-block;
+            width: 50px;
+            height: 200px;
+            background-color: white;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .piano-key.black {
+            position: relative;
+            top: -120px;
+            width: 30px;
+            height: 120px;
+            background-color: black;
+            margin-left: -15px;
+        }
+    </style>
+</head>
+<body style="align-self: center; margin-left:40%;">
+    <h1>Piano Game </h1>
+    <div id="piano" style="padding:2%;margin-top: 5%;">
+        <div class="piano-key" data-note="note1"></div>
+        <div class="piano-key black" data-note="note2"></div>
+        <div class="piano-key" data-note="note3"></div>
+        <div class="piano-key black" data-note="note4"></div>
+        <div class="piano-key" data-note="note5"></div>
+        <div class="piano-key black" data-note="note6"></div>
+        <div class="piano-key " data-note="note7"></div>
+    </div>
+    <script>
+        // Function to play the sound 
+        function playSound(note) {
+            var audio = new Audio("notes/" + note + ".wav");
+            audio.play();
+        }
+
+        // Add event listener to piano keys
+        var pianoKeys = document.querySelectorAll(".piano-key");
+        pianoKeys.forEach(function(key) {
+            key.addEventListener("click", function() {
+                var note = this.getAttribute("data-note");
+                playSound(note);
+            });
+        });
+    </script>
+</body>
+</html>
